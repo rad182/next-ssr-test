@@ -2,7 +2,15 @@ import Head from "next/head";
 
 export default function Hello({ data }) {
   console.log({ data });
-  return <p>{data.quote}</p>;
+  return (
+    <>
+      <Head>
+        <title>{data.anime}</title>
+        <meta property="og:title" content={data.quote} key="title" />
+      </Head>
+      <p>{data.quote}</p>
+    </>
+  );
 }
 export async function getServerSideProps(context) {
   const res = await fetch("https://animechan.vercel.app/api/random");
